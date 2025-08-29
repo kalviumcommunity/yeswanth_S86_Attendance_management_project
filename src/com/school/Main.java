@@ -1,31 +1,32 @@
 package com.school;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("--- School Attendance System ---");
+        // Create sample students
+        Student s1 = new Student("Alice");
+        Student s2 = new Student("Bob");
 
-        // Create students using constructor
-        Student[] students = new Student[3];
-        students[0] = new Student("Alice Wonderland");
-        students[1] = new Student("Bob The Builder");
-        students[2] = new Student("Charlie Brown");
+        // Create sample courses
+        Course c1 = new Course("Mathematics");
+        Course c2 = new Course("Science");
 
-        // Create courses using constructor
-        Course[] courses = new Course[3];
-        courses[0] = new Course("Intro to Programming");
-        courses[1] = new Course("Linear Algebra");
-        courses[2] = new Course("Data Structures");
+        // Attendance log
+        List<AttendanceRecord> attendanceLog = new ArrayList<>();
 
-        System.out.println("\nRegistered Students:");
-        for (Student student : students) {
-            if (student != null) student.displayDetails();
+        // Valid entries
+        attendanceLog.add(new AttendanceRecord(s1.getStudentId(), c1.getCourseId(), "Present"));
+        attendanceLog.add(new AttendanceRecord(s2.getStudentId(), c2.getCourseId(), "Absent"));
+
+        // Invalid entry
+        attendanceLog.add(new AttendanceRecord(s1.getStudentId(), c2.getCourseId(), "Late"));
+
+        // Display
+        System.out.println("\nAttendance Log:");
+        for (AttendanceRecord record : attendanceLog) {
+            record.displayRecord();
         }
-
-        System.out.println("\nAvailable Courses:");
-        for (Course course : courses) {
-            if (course != null) course.displayDetails();
-        }
-
-        System.out.println("\nSession 3: Constructor Init & Auto-ID Generation Complete.");
     }
 }
