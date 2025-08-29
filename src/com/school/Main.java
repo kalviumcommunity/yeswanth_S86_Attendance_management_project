@@ -5,28 +5,48 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        // Create sample students
-        Student s1 = new Student("Alice");
-        Student s2 = new Student("Bob");
+        System.out.println("--- School Attendance System ---");
 
-        // Create sample courses
-        Course c1 = new Course("Mathematics");
-        Course c2 = new Course("Science");
+        // Create students
+        Student[] students = new Student[3];
+        students[0] = new Student("Alice Wonderland");
+        students[1] = new Student("Bob The Builder");
+        students[2] = new Student("Charlie Brown");
 
-        // Attendance log
+        // Create courses
+        Course[] courses = new Course[3];
+        courses[0] = new Course("Intro to Programming");
+        courses[1] = new Course("Linear Algebra");
+        courses[2] = new Course("Data Structures");
+
+        System.out.println("\nRegistered Students:");
+        for (Student student : students) {
+            if (student != null) student.displayDetails();
+        }
+
+        System.out.println("\nAvailable Courses:");
+        for (Course course : courses) {
+            if (course != null) course.displayDetails();
+        }
+
+        // ✅ Attendance Recording
+        System.out.println("\nRecording Attendance...");
+
         List<AttendanceRecord> attendanceLog = new ArrayList<>();
 
-        // Valid entries
-        attendanceLog.add(new AttendanceRecord(s1.getStudentId(), c1.getCourseId(), "Present"));
-        attendanceLog.add(new AttendanceRecord(s2.getStudentId(), c2.getCourseId(), "Absent"));
+        AttendanceRecord r1 = new AttendanceRecord(students[0].getStudentId(), courses[0].getCourseId(), "Present");
+        AttendanceRecord r2 = new AttendanceRecord(students[1].getStudentId(), courses[1].getCourseId(), "Absent");
+        AttendanceRecord r3 = new AttendanceRecord(students[2].getStudentId(), courses[2].getCourseId(), "Late"); // invalid
 
-        // Invalid entry
-        attendanceLog.add(new AttendanceRecord(s1.getStudentId(), c2.getCourseId(), "Late"));
+        attendanceLog.add(r1);
+        attendanceLog.add(r2);
+        attendanceLog.add(r3);
 
-        // Display
         System.out.println("\nAttendance Log:");
         for (AttendanceRecord record : attendanceLog) {
             record.displayRecord();
         }
+
+        System.out.println("\nSession 4: Encapsulation & Attendance Recording Complete.");
     }
 }
